@@ -1,6 +1,6 @@
-import sys, pickle
+import sys, os, pickle
 
-from microapp import App, run_command
+from microapp import App
 from langlab.pymake.parser import parsestring
 
 
@@ -11,7 +11,7 @@ class ParseMakefile(App):
 
     def __init__(self, mgr):
 
-        self.add_argument("makefile", type=str, help="makefile path")
+        self.add_argument("makefile", type=str, help="makefile")
         self.add_argument("-s", "--split", action="store_true",
                           help="splitted makefile")
 
@@ -33,11 +33,19 @@ class ParseMakefile(App):
 
     def perform(self, mgr, args):
 
-        with open(args.makefile["_"]) as f:
-            stmts = parsestring(f.read(), f)
+        mkfile = args.makefile["_"]
 
-            if args.split:
-                stmts = "\n".join(map(self._to_source, stmts))
-                self.add_forward(data=stmts)
-            else:
-                self.add_forward(data=stmts)
+        if os.path.isfile(mkfile):
+            filename = mkfile
+            with open(mkfile) as f:
+                mkfile = f.read()
+        else:
+            filename = "<string>"
+
+        stmts = parsestring(mkfile, filename)
+
+        if args.split:
+            stmts = "\n".join(map(self._to_source, stmts))
+            self.add_forward(data=stmts)
+        else:
+            self.add_forward(data=stmts)
