@@ -2,11 +2,11 @@
 
 def main():
 
-    from setuptools import setup
+    from setuptools import setup, find_packages
     from langlab.main import Langlab as llab
 
     console_scripts = ["langlab=langlab.__main__:main"]
-    install_requires = ["microapp>=0.2.0"]
+    install_requires = ["microapp>=0.2.1"]
 
     setup(
         name=llab._name_,
@@ -27,7 +27,7 @@ def main():
             "Programming Language :: Python :: 3.8",
         ],
         keywords="langlab",
-        packages=[ "langlab" ],
+        packages=find_packages(),
         include_package_data=True,
         install_requires=install_requires,
         entry_points={ "console_scripts": console_scripts,
