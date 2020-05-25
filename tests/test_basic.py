@@ -9,7 +9,7 @@ def test_basic():
     prj = Langlab()
 
     cmd = "input @1 --forward '@x=2'"
-    ret = prj.main(cmd)
+    ret, fwds = prj.run_command(cmd)
 
     assert ret == 0
 
@@ -18,7 +18,7 @@ def test_print(capsys):
     prj = Langlab()
 
     cmd = "-- input @1 --forward '@x=2' -- print @x @data[0]"
-    ret = prj.main(cmd)
+    ret, fwds = prj.run_command(cmd)
 
     assert ret == 0
 
@@ -32,7 +32,7 @@ def test_parse_makefile(capsys):
     makefile = os.path.join(here, "src", "Depends.intel")
 
     cmd = "-- parsemk %s -s -- print @data" % makefile
-    ret = prj.main(cmd)
+    ret, fwds = prj.run_command(cmd)
 
     assert ret == 0
 

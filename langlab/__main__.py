@@ -2,7 +2,7 @@
 
 def main():
     from langlab import Langlab
-    return Langlab().main()
+    ret, fwds = Langlab().run_command()
 
 if __name__ == "__main__":
     main()

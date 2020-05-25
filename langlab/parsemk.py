@@ -31,7 +31,7 @@ class ParseMakefile(App):
 #            obj.valueloc.path = None
 #        #    setattr(obj, "valueloc", None)
 
-    def perform(self, mgr, args):
+    def perform(self, args):
 
         mkfile = args.makefile["_"]
 
