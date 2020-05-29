@@ -6,7 +6,7 @@ def main():
     from langlab.main import Langlab as llab
 
     console_scripts = ["langlab=langlab.__main__:main"]
-    install_requires = ["microapp>=0.2.5"]
+    install_requires = ["microapp>=0.3.0"]
 
     setup(
         name=llab._name_,
