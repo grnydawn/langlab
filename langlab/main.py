@@ -3,7 +3,7 @@ from langlab.parsemk import ParseMakefile
 
 class Langlab(Project):
     _name_ = "langlab"
-    _version_ = "0.2.4"
+    _version_ = "0.3.0"
     _description_ = "Microapp project for programming languages"
     _long_description_ = "Microapp project for programming languages"
     _author_ = "Youngsung Kim"
